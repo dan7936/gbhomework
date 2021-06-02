@@ -98,6 +98,17 @@ int main()
 				break;
 			}
 		}
+		for (int32_t iDimension = 0; iDimension < iArraySize; ++iDimension)
+		{
+			for (int32_t iRow = 0; iRow < iArraySize; ++iRow)
+			{
+				for (int32_t iCol = 0; iCol < iArraySize; ++iCol)
+
+					std::cout << "|" << iMyMagical3DArray[iDimension][iRow][iCol] << "|   ";
+
+				std::cout << '\n';
+			}
+		}
 	// Сделаем интерактивный вывод массива на экран
 		while (true)
 		{
