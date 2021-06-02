@@ -2,6 +2,8 @@
 #include <clocale> // подключаем библиотеку с языками
 #include <stdint.h> // подключаем библиотеку для использования кроссплатформенных целочисленных переменных
 
+enum iTask2Conditions { iMagicNumber = 21, iFactor = 2 };
+enum iTask3PtrArrayConditions { iArraySize = 3, iPtrLimit = 25, iIndexOverFlow = 26 };
 // в коде попробуем поиспользовать венгерскую нотацию (i = int) (f = float)
 const int iBuf_Erazer = 35247;
 const extern int32_t iA;
@@ -11,6 +13,7 @@ const extern int32_t iD;
 
 int main()
 {
+	setlocale(LC_ALL, "Russian");
 	/*
 	================================================================================================
 	---------------------------------------------Task 1---------------------------------------------
@@ -29,7 +32,6 @@ int main()
 		// в выражении проводим операцию кастования (превращения?) из 'int c' во 'float c'
 		float fResult = iA * (iB + (static_cast<float>(iC) / iD));
 		// выводим результат на экран
-		setlocale(LC_ALL, "Russian");
 		std::cout << "Результат выражения " << iA << "*(" << iB << "+(" << iC << "/" << iD << ")) равен " << fResult << std::endl;
 	}
 	/*
@@ -46,8 +48,7 @@ int main()
 	{
 		while (true)
 		{
-			enum iConditions {iMagicNumber=21, iFactor=2};
-			setlocale(LC_ALL, "Russian");
+			
 			std::cout << "Введите, пожалуйста, целочисленную переменную: ";
 			int32_t iMyInteger, iResult;
 			std::cin >> iMyInteger;
@@ -60,9 +61,9 @@ int main()
 			else
 			{
 				iResult = (iMyInteger <= iMagicNumber) ? (iMagicNumber - iMyInteger) : ((iMyInteger - iMagicNumber) * iFactor);
-				if (iResult < iMagicNumber)
+				if (iResult <= iMagicNumber)
 				{
-					std::cout << "Ваше число меньше числа 21, выводим на экран его разницу с числом 21 равную " << iResult << std::endl;
+					std::cout << "Ваше число меньше или равно числу 21, выводим на экран его разницу с числом 21 равную " << iResult << std::endl;
 				}
 				else 
 				{
@@ -81,19 +82,17 @@ int main()
 	при помощи операции разыменования вывести на экран значение центральной ячейки получившегося куба [1][1][1].
 	*/
 	{
-		enum iPtrArrayConditions { iArraySize = 3, iPtrLimit = 25, iIndexOverFlow = 27 };
-		int32_t iMy_Magical_3D_Array[iArraySize][iArraySize][iArraySize] = { { { 0 } } };
-		int32_t *pMyMagicPointer = nullptr;
-		pMyMagicPointer = &iMy_Magical_3D_Array[0][0][0];
-		int32_t Index = 0;
-		int32_t VarInt = 1;
+		int32_t iMyMagical3DArray[iArraySize][iArraySize][iArraySize] = { 0 };
+		int32_t *pMyMagicPointer = &iMyMagical3DArray[0][0][0];
+		int32_t iIndex = 0;
+		int32_t iVarInt = 1;
 		while (true)
 		{
-			pMyMagicPointer[Index] = VarInt;
-			if (Index <= iPtrLimit)
+			pMyMagicPointer[iIndex] = iVarInt;
+			if (iIndex <= iPtrLimit)
 			{
-				Index = ++Index;
-				VarInt = ++VarInt;	
+				iIndex++;
+				iVarInt++;	
 			}
 			else
 			{
@@ -104,21 +103,17 @@ int main()
 		while (true)
 		{
 			std::cout << "Пожалуйста, укажите какое значение из трехмерного массива 3х3х3, вы хотите вывести на экран (число от 0 до 26):";
-			std::cin >> Index;
-			if (std::cin.fail())
+			std::cin >> iIndex;
+			if (std::cin.fail() || iIndex > iIndexOverFlow)
 			{
 				std::cin.clear();
 				std::cin.ignore(iBuf_Erazer, '\n');
 				std::cout << "Ошибка! Введите, пожалуства, целое число от 0 до 26." << std::endl;
 			}
-			else if (Index >= iIndexOverFlow)
-			{
-				std::cout << "Ошибка! Введите, пожалуства, целое число от 0 до 26." << std::endl;
-			}
 			else
 			{
-				std::cout << "Вы ввели значение индекса в массиве равное " << Index;
-				std::cout << ", вот значение интересующей вас переменной " << pMyMagicPointer[Index] << std::endl;
+				std::cout << "Вы ввели значение индекса в массиве равное " << iIndex;
+				std::cout << ", вот значение интересующей вас переменной " << pMyMagicPointer[iIndex] << std::endl;
 				break;
 			}
 		}
@@ -136,7 +131,6 @@ int main()
 		// в выражении проводим операцию кастования (превращения?) из 'int c' во 'float c'
 		float fResult = iA * (iB + (static_cast<float>(iC) / iD));
 		// выводим результат на экран
-		setlocale(LC_ALL, "Russian");
 		std::cout << "Результат выражения " << iA << "*(" << iB << "+(" << iC << "/" << iD << ")) равен " << fResult << std::endl;
 	}
 	return 0;
