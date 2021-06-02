@@ -49,7 +49,7 @@ int main()
 		while (true)
 		{
 			std::cout << "Введите, пожалуйста, целочисленную переменную: ";
-			int32_t iMyInteger{0}, iResult{0};
+			int32_t iMyInteger{}, iResult{};
 			std::cin >> iMyInteger;
 			if(std::cin.fail())
 			{
@@ -81,7 +81,7 @@ int main()
 	при помощи операции разыменования вывести на экран значение центральной ячейки получившегося куба [1][1][1].
 	*/
 	{
-		int32_t iMyMagical3DArray[iArraySize][iArraySize][iArraySize] = { 0 };
+		int32_t iMyMagical3DArray[iArraySize][iArraySize][iArraySize] = {};
 		int32_t *pMyMagicPointer = &iMyMagical3DArray[0][0][0];
 		int32_t iIndex = 0;
 		int32_t iVarInt = 1;
@@ -109,7 +109,7 @@ int main()
 				std::cout << '\n';
 			}
 		}
-	// Сделаем интерактивный вывод массива на экран
+		// Сделаем интерактивный вывод массива на экран
 		while (true)
 		{
 			std::cout << "Пожалуйста, укажите какое значение из трехмерного массива 3х3х3, вы хотите вывести на экран (число от 0 до 26):";
@@ -125,6 +125,39 @@ int main()
 				std::cout << "Вы ввели значение индекса в массиве равное " << iIndex;
 				std::cout << ", вот значение интересующей вас переменной " << *(pMyMagicPointer + iIndex) << std::endl;
 				break;
+			}
+		}
+		// Делаем проверку
+		pMyMagicPointer = &iMyMagical3DArray[1][1][1];
+		int32_t iArrInteger{};
+		std::cout << "Введите любое целое число: ";
+		while (true)
+		{
+			std::cin >> iArrInteger;
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(iBuf_Erazer, '\n');
+				std::cout << "Ошибка! Введите, пожалуства, целое число." << std::endl;
+				std::cout << "Попробуйте еще раз: ";
+			}
+			else
+			{
+				break;
+			}
+		}
+		std::cout << "Внесем его в массив в центральную переменную и проверим." << std::endl;
+		*pMyMagicPointer = iArrInteger;
+		// выводим массив на экран
+		for (int32_t iDimension = 0; iDimension < iArraySize; ++iDimension)
+		{
+			for (int32_t iRow = 0; iRow < iArraySize; ++iRow)
+			{
+				for (int32_t iCol = 0; iCol < iArraySize; ++iCol)
+
+					std::cout << "|" << iMyMagical3DArray[iDimension][iRow][iCol] << "|   ";
+
+				std::cout << '\n';
 			}
 		}
 	}
