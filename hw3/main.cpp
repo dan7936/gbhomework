@@ -48,9 +48,8 @@ int main()
 	{
 		while (true)
 		{
-			
 			std::cout << "Введите, пожалуйста, целочисленную переменную: ";
-			int32_t iMyInteger, iResult;
+			int32_t iMyInteger{0}, iResult{0};
 			std::cin >> iMyInteger;
 			if(std::cin.fail())
 			{
@@ -63,11 +62,11 @@ int main()
 				iResult = (iMyInteger <= iMagicNumber) ? (iMagicNumber - iMyInteger) : ((iMyInteger - iMagicNumber) * iFactor);
 				if (iResult <= iMagicNumber)
 				{
-					std::cout << "Ваше число меньше или равно числу 21, выводим на экран его разницу с числом 21 равную " << iResult << std::endl;
+					std::cout << "Ваше число меньше или равно числу 21, выводим результат операции (21 - "<< iMyInteger << ") равный " << iResult << std::endl;
 				}
 				else 
 				{
-					std::cout << "Ваше число больше числа 21, выводим на экран его удвоенную разницу с числом 21 равную " << iResult << std::endl;
+					std::cout << "Ваше число больше числа 21, выводим результат операции ((" << iMyInteger << " - 21)*2) равный " << iResult << std::endl;
 				}
 				break;
 			}
@@ -113,7 +112,7 @@ int main()
 			else
 			{
 				std::cout << "Вы ввели значение индекса в массиве равное " << iIndex;
-				std::cout << ", вот значение интересующей вас переменной " << pMyMagicPointer[iIndex] << std::endl;
+				std::cout << ", вот значение интересующей вас переменной " << *(pMyMagicPointer + iIndex) << std::endl;
 				break;
 			}
 		}
