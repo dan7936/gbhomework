@@ -3,7 +3,8 @@
 #include <stdint.h> // подключаем библиотеку для использования кроссплатформенных целочисленных переменных
 
 enum iTask2Conditions { iMagicNumber = 21, iFactor = 2 };
-enum iTask3PtrArrayConditions { iArraySize = 3, iPtrLimit = 25, iIndexOverFlow = 26 };
+enum iTask3PtrArrayConditions { iArraySize = 3, iPtrLimit = 25, iRememb0to26 = 1 };
+enum iTask3ArrayPicture { iIntUpperLimit = 2147483647, iIntLowerLimit = 0, iArrUpperLimit = 27, iArrLowerLimit = 1 };
 // в коде попробуем поиспользовать венгерскую нотацию (i = int) (f = float)
 const int iBuf_Erazer = 35247;
 const extern int32_t iA;
@@ -22,7 +23,7 @@ int main()
 	Написать программу, вычисляющую выражение a * (b + (c / d)) и выводящую результат с плавающей точкой, 
 	где a, b, c, d – целочисленные константы. Используйте static_cast или СStyle cast к float чтобы выполнить точное деление.
 	*/
-
+	/*
 	{
 		// объявляем целочисленные константы для выражения 
 		const int32_t iA = 27;
@@ -33,7 +34,7 @@ int main()
 		float fResult = iA * (iB + (static_cast<float>(iC) / iD));
 		// выводим результат на экран
 		std::cout << "Результат выражения " << iA << "*(" << iB << "+(" << iC << "/" << iD << ")) равен " << fResult << std::endl;
-	}
+	}*/
 	/*
 	================================================================================================
 	---------------------------------------------Task 2---------------------------------------------
@@ -44,7 +45,7 @@ int main()
 	При выполнении задания следует использовать тернарный оператор (?:).
 
 	Сделаем задание немного интерактивным, люблю интерактивность
-	*/
+	*//*
 	{
 		while (true)
 		{
@@ -71,7 +72,7 @@ int main()
 				break;
 			}
 		}
-	}
+	}*/
 	/*
 	================================================================================================
 	---------------------------------------------Task 3---------------------------------------------
@@ -109,45 +110,40 @@ int main()
 				std::cout << '\n';
 			}
 		}
-		// Сделаем интерактивный вывод массива на экран
-		while (true)
-		{
-			std::cout << "Пожалуйста, укажите какое значение из трехмерного массива 3х3х3, вы хотите вывести на экран (число от 0 до 26):";
-			std::cin >> iIndex;
-			if (std::cin.fail() || iIndex > iIndexOverFlow)
-			{
-				std::cin.clear();
-				std::cin.ignore(iBuf_Erazer, '\n');
-				std::cout << "Ошибка! Введите, пожалуства, целое число от 0 до 26." << std::endl;
-			}
-			else
-			{
-				std::cout << "Вы ввели значение индекса в массиве равное " << iIndex;
-				std::cout << ", вот значение интересующей вас переменной " << *(pMyMagicPointer + iIndex) << std::endl;
-				break;
-			}
-		}
 		// Делаем проверку
-		pMyMagicPointer = &iMyMagical3DArray[1][1][1];
-		int32_t iArrInteger{};
-		std::cout << "Введите любое целое число: ";
+		pMyMagicPointer = &iMyMagical3DArray[0][0][0];
+		int32_t iIndexArr{}, iIntegerArr{};
+		std::cout << "Введите любое целое число от 1 до 27: ";
 		while (true)
 		{
-			std::cin >> iArrInteger;
-			if (std::cin.fail())
+			std::cin >> iIndexArr;
+			if (std::cin.fail() || iIndexArr < iArrLowerLimit || iIndexArr >= iArrUpperLimit)
 			{
 				std::cin.clear();
 				std::cin.ignore(iBuf_Erazer, '\n');
-				std::cout << "Ошибка! Введите, пожалуства, целое число." << std::endl;
+				std::cout << "Ошибка! Введите, пожалуйста, целое число от 1 до 27." << std::endl;
 				std::cout << "Попробуйте еще раз: ";
 			}
 			else
 			{
-				break;
+				std::cout << "Введите любое целое число от 0 до 2'147'483'647: ";
+				std::cin >> iIntegerArr;
+				if (std::cin.fail() || iIntegerArr > iIntUpperLimit || iIntegerArr < iIntLowerLimit)
+				{
+					std::cin.clear();
+					std::cin.ignore(iBuf_Erazer, '\n');
+					std::cout << "Ошибка! Введите, пожалуйста, целое число от 0 до 2'147'483'648." << std::endl;
+					std::cout << "Попробуйте еще раз: ";
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
-		std::cout << "Внесем его в массив в центральную переменную и проверим." << std::endl;
-		*pMyMagicPointer = iArrInteger;
+		std::cout << "Внесем значение переменной: " << iIntegerArr << " в " << iIndexArr << " элемент массива." << std::endl;
+		pMyMagicPointer += (iIndexArr - iRememb0to26);
+		* pMyMagicPointer = iIntegerArr;
 		// выводим массив на экран
 		for (int32_t iDimension = 0; iDimension < iArraySize; ++iDimension)
 		{
@@ -169,12 +165,13 @@ int main()
 	** Написать программу, вычисляющую выражение из первого задания, а переменные для неё объявлены и 
 	инициализировать в другом cpp файле. Используйте extern.
 	*/
-
+	/*
 	{
 		// в выражении проводим операцию кастования (превращения?) из 'int c' во 'float c'
 		float fResult = iA * (iB + (static_cast<float>(iC) / iD));
 		// выводим результат на экран
 		std::cout << "Результат выражения " << iA << "*(" << iB << "+(" << iC << "/" << iD << ")) равен " << fResult << std::endl;
 	}
+	*/
 	return 0;
 }
