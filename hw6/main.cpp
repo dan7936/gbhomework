@@ -24,11 +24,6 @@ int main()
 	std::cout << "Pls, enter an integer for Array creation: ";
 	ConsoleInput(pIndex);
 	MakeDynamicArray(pT1Arr, INDEX);
-
-	std::cout << "---------------Task 1/1---------------" << std::endl;
-	std::cout << "Pls, enter an integer for Array creation: ";
-	ConsoleInput(pIndex);
-	MakeDynamicArray(pT1Arr, INDEX);
 	/*
 	* Динамически выделить матрицу 4х4 типа int. Инициализировать ее псевдослучайными числами через функцию rand.
 	* Вывести на экран. Разбейте вашу программу на функции которые вызываются из main.
