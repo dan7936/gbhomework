@@ -1,5 +1,9 @@
 #pragma once
 
+bool getUserInputWom();
+char userChoosing();
+std::string getUserWords();
+int getUserInput();
 /*
 * =================================================================
 * ------------------------Class for Task 1-------------------------
@@ -10,42 +14,33 @@ class Person // Parent class for TASK 1
 public:
 	Person() = default;
 	~Person() = default;
-	void setName()
-	{
-		m_name = getName();
-	}
-	void setAge()
-	{
-		m_age = getAge();
-	}
-	void setWeight()
-	{
-		m_weight = getWeight();
-	}
 protected:
 	std::string m_name{};
 	int m_age{};
 	int m_weight{};
-private:
-	std::string getName() //user input for name
+	bool m_isWoman{};
+	void setName() //user input for name
 	{
 		std::cout << "Pls enter Person's name: ";
-		std::string personName = getUserWords();
-		return personName;
+		m_name = getUserWords();
 	}
 
-	int getAge() //user input for age
+	void setAge() //user input for age
 	{
 		std::cout << "Pls enter Person's age: ";
-		int personAge = getUserInput();
-		return personAge;
+		m_age = getUserInput();
 	}
 
-	int getWeight() //user input for weight
+	void setPersonSex()
+	{
+		std::cout << "Pls enter Person's sex 1 is man 0 is woman: ";
+		m_isWoman = getUserInputWom();
+	}
+
+	void setWeight() //user input for weight
 	{
 		std::cout << "Pls enter Person's weight: ";
-		int personWeight = getUserInput();
-		return personWeight;
+		m_weight = getUserInput();
 	}
 };
 
@@ -70,10 +65,11 @@ public:
 	void printStudentInfo()
 	{
 		std::cout << "This student's number is " << m_studentNumber << std::endl;
-		std::cout << "His info:" << std::endl;
+		std::cout << "Information:" << std::endl;
 		std::cout << " - name: " << m_name << std::endl;
 		std::cout << " - age: " << m_age << std::endl;
 		std::cout << " - weight: " << m_weight << std::endl;
+		std::cout << " - sex: " << (m_isWoman ? "man" : "woman") << std::endl;
 		std::cout << " - year of study: " << m_yearOfStudy << std::endl;
 		std::cout << " - student number: " << m_studentNumber << std::endl;
 	}
@@ -82,6 +78,7 @@ public:
 		setName();
 		setAge();
 		setWeight();
+		setPersonSex();
 		setYearOfStudy();
 	}
 protected:
@@ -95,16 +92,10 @@ protected:
 	};
 
 private:
-	int getYearOfStudy() //user input for student starting year of education
-	{
-		std::cout << "Pls enter Student's starting year of education: ";
-		int studentStartingYear = getUserInput();
-		return studentStartingYear;
-	}
-
 	void setYearOfStudy()
 	{
-		m_yearOfStudy = getYearOfStudy();
+		std::cout << "Pls enter Student's starting year of education: ";
+		m_yearOfStudy = getUserInput();
 		m_studentIndex++;
 		m_studentNumber = m_studentIndex;
 		m_graduationCounting++;

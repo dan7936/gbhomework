@@ -11,7 +11,4 @@
 */
 void Task1();
 int setSizeOfDatabase();
-char userChoosing();
-int getUserInput();
-std::string getUserWords();
 void Task2();

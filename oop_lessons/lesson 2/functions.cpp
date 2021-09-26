@@ -92,7 +92,6 @@ int setSizeOfDatabase() // function for seting size of database in TASK 1
 
 int getUserInput() // function for geting user input
 {
-	int i_buffErazer{ 32750 };
 	int RealityCheck{ 1 };
 	int userInput{};
 	bool cinFlag{};
@@ -100,7 +99,7 @@ int getUserInput() // function for geting user input
 	{
 		cinFlag = true;
 		std::cin >> userInput;
-		std::cin.ignore(i_buffErazer, '\n');
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		if (std::cin.fail() || userInput < RealityCheck)
 		{
 			cinFlag = false;
@@ -111,11 +110,29 @@ int getUserInput() // function for geting user input
 	return userInput;
 }
 
+bool getUserInputWom() // function for geting user input
+{
+	bool userInput{};
+	bool cinFlag{};
+	while (!cinFlag)
+	{
+		cinFlag = true;
+		std::cin >> userInput;
+		if (std::cin.fail())
+		{
+			cinFlag = false;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Error! Pls try again." << std::endl;
+		}
+	}
+	return userInput;
+}
+
 char userChoosing() // function for geting user input on continue or not
 {
 	char c_choise{};
 	bool cinFlag{};
-	int i_buffErazer{ 32750 };
 	while (!cinFlag)
 	{
 		cinFlag = true;
@@ -124,18 +141,17 @@ char userChoosing() // function for geting user input on continue or not
 		{
 			cinFlag = false;
 			std::cin.clear();
-			std::cin.ignore(i_buffErazer, '\n');
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Error! Pls try again." << std::endl;
 		}
 	}
-	std::cin.ignore(i_buffErazer, '\n');
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	return c_choise;
 }
 
 std::string getUserWords() // function for geting user input on words for string
 {
 	std::string userInput{};
-	int i_buffErazer{ 32750 };
 	bool cinFlag{};
 	while (!cinFlag)
 	{
@@ -145,7 +161,7 @@ std::string getUserWords() // function for geting user input on words for string
 		{
 			cinFlag = false;
 			std::cin.clear();
-			std::cin.ignore(i_buffErazer, '\n');
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "Error! Pls try again." << std::endl;
 		}
 	}
