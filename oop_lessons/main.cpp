@@ -7,12 +7,27 @@
 * --------------------------------------------Variables---------------------------------------------
 * ==================================================================================================
 */
-enum RgbaColors{e_RgbaRed = 40, e_RgbaGreen = 50, e_RgbaBlue = 60, e_RgbaAlpha = 70};
-double d_PowerNumber{ 13 };
-double d_PowerExponent{ 0.354 };
-uint8_t u_AlphaDefault = 255;
-enum StackConditions{e_ArrSize = 10, e_Null = 0};
-enum ArrayVariables{e_ArrOne = 3, e_ArrTwo = 7, e_ArrThree = 5};
+enum RgbaColors
+{
+	e_rgbaRed = 40, 
+	e_rgbaGreen = 50, 
+	e_rgbaBlue = 60, 
+	e_rgbaAlpha = 70
+};
+double d_powerNumber{ 13 };
+double d_powerExponent{ 0.354 };
+uint8_t u_alphaDefault = 255;
+enum StackConditions
+{
+	e_arrSize = 10, 
+	e_null = 0
+};
+enum ArrayVariables
+{
+	e_arrOne = 3, 
+	e_arrTwo = 7, 
+	e_arrThree = 5
+};
 
 /*
 * ==================================================================================================
@@ -22,23 +37,26 @@ enum ArrayVariables{e_ArrOne = 3, e_ArrTwo = 7, e_ArrThree = 5};
 class Power // this is class for task 1, here we are "raise to the POWER!"
 {
 public:
-	void setExpo(double Number, double Power)
+	void setNumb(double number)
 	{
-		d_Number = Number;
-		d_Power = Power;
+		d_number = number;
+	}
+	void setPow(double power)
+	{
+		d_power = power;
 	}
 	void calculateExpo()
 	{
-		d_Result = pow(d_Number, d_Power);
+		d_result = pow(d_number, d_power);
 	}
 	void printExpo()
 	{
-		std::cout << "The result is " << d_Result << std::endl;
+		std::cout << "The result is " << d_result << std::endl;
 	}
 private:
-	double d_Number{};
-	double d_Power{};
-	double d_Result{};
+	double d_number{};
+	double d_power{};
+	double d_result{};
 };
 
 /*
@@ -73,56 +91,56 @@ class Stack
 public:
 	void reset()
 	{
-		for (size_t Index = e_Null; Index < e_ArrSize; Index++)
+		for (size_t index = e_null; index < e_arrSize; index++)
 		{
-			i_Array[Index] = e_Null;
+			i_array[index] = e_null;
 		}
-		i_ArrIndex = 0;
+		i_arrIndex = e_null;
 	}
 	bool push(int Input)
 	{
-		if (i_ArrIndex == e_ArrSize)
+		if (i_arrIndex == e_arrSize)
 		{
 			return false;
 		}
 		else
 		{
-			i_Array[i_ArrIndex] = Input;
-			i_ArrIndex++;
+			i_array[i_arrIndex] = Input;
+			i_arrIndex++;
 			return true;
 		}
 	}
 	int pop()
 	{
-		if (i_ArrIndex == e_Null)
+		if (i_arrIndex == e_null)
 		{
 			std::cout << "Sorry, the array is null" << std::endl;
-			return e_Null;
+			return e_null;
 		}
 		else
 		{
-			i_ArrIndex--;
-			return i_Array[i_ArrIndex];
+			i_arrIndex--;
+			return i_array[i_arrIndex];
 		}
 	}
 	void print()
 	{
-		if (i_ArrIndex == e_Null)
+		if (i_arrIndex == e_null)
 		{
 			std::cout << "[ " << " ]" << std::endl;
 		}
 		else
 		{
-			for (int Index = 0; Index < i_ArrIndex; Index++)
+			for (int index = 0; index < i_arrIndex; index++)
 			{
-				std::cout << "[ " << i_Array[Index] << " ]";
+				std::cout << "[ " << i_array[index] << " ]";
 			}
 			std::cout << std::endl;
 		}
 	}
 private:
-	int i_Array[e_ArrSize]{};
-	int i_ArrIndex{};
+	int i_array[e_arrSize]{};
+	int i_arrIndex{};
 };
 
 /*
@@ -156,7 +174,8 @@ void Task1()
 {
 	std::cout << "------------------Task 1------------------" << std::endl;
 	Power MyExpo;
-	MyExpo.setExpo(d_PowerNumber, d_PowerExponent);
+	MyExpo.setNumb(d_powerNumber);
+	MyExpo.setPow(d_powerExponent);
 	MyExpo.calculateExpo();
 	MyExpo.printExpo();
 	std::cout << std::endl;
@@ -165,7 +184,7 @@ void Task1()
 void Task2()
 {
 	std::cout << "------------------Task 2------------------" << std::endl;
-	RGBA rgba(e_RgbaRed, e_RgbaGreen, e_RgbaBlue, e_RgbaAlpha);
+	RGBA rgba(e_rgbaRed, e_rgbaGreen, e_rgbaBlue, e_rgbaAlpha);
 	rgba.printRGBA();
 	std::cout << std::endl;
 }
@@ -176,9 +195,9 @@ void Task3()
 	Stack stack;
 	stack.reset();
 	stack.print();
-	stack.push(e_ArrOne);
-	stack.push(e_ArrTwo);
-	stack.push(e_ArrThree);
+	stack.push(e_arrOne);
+	stack.push(e_arrTwo);
+	stack.push(e_arrThree);
 	stack.print();
 	stack.pop();
 	stack.print();
