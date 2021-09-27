@@ -49,6 +49,30 @@ class Student : public Person // Heritage class for TASK 1
 public:
 	Student() = default;
 	~Student() = default;
+	void setYearOfStudy()
+	{
+		std::cout << "Pls enter Student's starting year of education: ";
+		m_yearOfStudy = getUserInput();
+		m_studentIndex++;
+		m_studentNumber = m_studentIndex;
+		m_graduationCounting++;
+	}
+protected:
+	int m_studentIndex{};
+	int m_yearOfStudy{};
+	int m_studentNumber{};
+	int m_graduationCounting{};
+	enum EducationMatters // mark of education's length
+	{
+		e_yearsOfStudy = 4
+	};
+};
+
+class StudentDataBase : virtual public Student
+{
+public:
+	StudentDataBase() = default;
+	~StudentDataBase() = default;
 	void incrYearOfStudy()
 	{
 		m_graduationCounting++;
@@ -80,24 +104,5 @@ public:
 		setWeight();
 		setPersonSex();
 		setYearOfStudy();
-	}
-protected:
-	int m_studentIndex{};
-	int m_yearOfStudy{};
-	int m_studentNumber{};
-	int m_graduationCounting{};
-	enum EducationMatters // mark of education's length
-	{
-		e_yearsOfStudy = 4
-	};
-
-private:
-	void setYearOfStudy()
-	{
-		std::cout << "Pls enter Student's starting year of education: ";
-		m_yearOfStudy = getUserInput();
-		m_studentIndex++;
-		m_studentNumber = m_studentIndex;
-		m_graduationCounting++;
 	}
 };

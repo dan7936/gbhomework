@@ -9,7 +9,7 @@ void Task1() // primal function for TASK 1
 {
 	std::cout << "------------------------Task 1------------------------" << std::endl;
 	int sizeOfDatabase = setSizeOfDatabase();
-	Student* p_studentDatabase = new Student[sizeOfDatabase];
+	StudentDataBase* p_studentDatabase = new StudentDataBase[sizeOfDatabase];
 	char c_userChoise{};
 	int databaseIndex{};
 	bool databaseClosing{};
@@ -33,16 +33,7 @@ void Task1() // primal function for TASK 1
 			if (c_userChoise == 'y')
 			{
 				std::cout << "Pls choose a student's number who's year of study you want to increment: ";
-				int databaseNavig = getUserInput();
-				if (databaseNavig > databaseIndex)
-				{
-					std::cout << "Sorry, we don't have so much students in our database!" << std::endl;
-				}
-				else
-				{
-					databaseNavig--;
-					p_studentDatabase[databaseNavig].incrYearOfStudy();
-				}
+				dataBaseNavigationYear(p_studentDatabase, databaseIndex);
 			}
 			else
 			{
@@ -52,16 +43,7 @@ void Task1() // primal function for TASK 1
 				if (c_userChoise == 'y')
 				{
 					std::cout << "Pls choose a student's number who's info you want to read: ";
-					int databaseNavig = getUserInput();
-					if (databaseNavig > databaseIndex)
-					{
-						std::cout << "Sorry, we don't have so much students in our database!" << std::endl;
-					}
-					else
-					{
-						databaseNavig--;
-						p_studentDatabase[databaseNavig].printStudentInfo();
-					}
+					dataBaseNavigationPrint(p_studentDatabase, databaseIndex);
 				}
 				else
 				{
@@ -166,6 +148,34 @@ std::string getUserWords() // function for geting user input on words for string
 		}
 	}
 	return userInput;
+}
+
+void dataBaseNavigationYear(StudentDataBase student[], int databaseIndex) // function for database naviagation and years increment
+{
+	int databaseNavig = getUserInput();
+	if (databaseNavig > databaseIndex)
+	{
+		std::cout << "Sorry, we don't have so much students in our database!" << std::endl;
+	}
+	else
+	{
+		databaseNavig--;
+		student[databaseNavig].incrYearOfStudy();
+	}
+}
+
+void dataBaseNavigationPrint(StudentDataBase student[], int databaseIndex) // function for database naviagation and printing student's info
+{
+	int databaseNavig = getUserInput();
+	if (databaseNavig > databaseIndex)
+	{
+		std::cout << "Sorry, we don't have so much students in our database!" << std::endl;
+	}
+	else
+	{
+		databaseNavig--;
+		student[databaseNavig].printStudentInfo();
+	}
 }
 
 void Task2() // primal function for TASK 2
