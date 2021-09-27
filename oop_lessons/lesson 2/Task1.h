@@ -102,15 +102,17 @@ protected:
 class StudentDataBase
 {
 public:
-	StudentDataBase() = default;
+	StudentDataBase()
+	{
+		sizeOfDatabase = setSizeOfDatabase();
+		p_studentDatabase = new Student[sizeOfDatabase];
+	};
 	~StudentDataBase() 
 	{
 		delete[] p_studentDatabase;
 	};
 	void databaseWork()
 	{
-		sizeOfDatabase = setSizeOfDatabase();
-		p_studentDatabase = new Student[sizeOfDatabase];
 		while (!databaseClosing)
 		{
 			std::cout << "Do you want to input a new student in database? y/n: ";
