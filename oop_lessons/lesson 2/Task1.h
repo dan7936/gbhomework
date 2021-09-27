@@ -68,7 +68,7 @@ protected:
 	};
 };
 
-class StudentDataBase : virtual public Student
+class StudentDataBase : public Student
 {
 public:
 	StudentDataBase() = default;
