@@ -1,7 +1,6 @@
 #pragma once
 
 bool getUserInputWom();
-char userChoosing();
 std::string getUserWords();
 int getUserInput();
 /*
@@ -104,11 +103,14 @@ class StudentDataBase
 {
 public:
 	StudentDataBase() = default;
-	~StudentDataBase() = default;
+	~StudentDataBase() 
+	{
+		delete[] p_studentDatabase;
+	};
 	void databaseWork()
 	{
 		sizeOfDatabase = setSizeOfDatabase();
-		Student* p_studentDatabase = new Student[sizeOfDatabase];
+		p_studentDatabase = new Student[sizeOfDatabase];
 		while (!databaseClosing)
 		{
 			std::cout << "Do you want to input a new student in database? y/n: ";
@@ -129,7 +131,7 @@ public:
 				if (c_userChoise == 'y')
 				{
 					std::cout << "Pls choose a student's number who's year of study you want to increment: ";
-					dataBaseNavigationYear(p_studentDatabase, databaseIndex);
+					dataBaseNavigationYear();
 				}
 				else
 				{
@@ -139,7 +141,7 @@ public:
 					if (c_userChoise == 'y')
 					{
 						std::cout << "Pls choose a student's number who's info you want to read: ";
-						dataBaseNavigationPrint(p_studentDatabase, databaseIndex);
+						dataBaseNavigationPrint();
 					}
 					else
 					{
@@ -157,13 +159,13 @@ public:
 				}
 			}
 		}
-		delete[] p_studentDatabase;
 	}
 private:
 	char c_userChoise{};
 	int databaseIndex{};
 	bool databaseClosing{};
 	int sizeOfDatabase{};
+	Student* p_studentDatabase;
 	int setSizeOfDatabase() // function for seting size of database in TASK 1
 	{
 		std::cout << "Let's create our student database." << std::endl;
@@ -190,7 +192,7 @@ private:
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		return c_choise;
 	}
-	void dataBaseNavigationYear(Student student[], int databaseIndex) // function for database naviagation and years increment
+	void dataBaseNavigationYear() // function for database naviagation and years increment
 	{
 		int databaseNavig = getUserInput();
 		if (databaseNavig > databaseIndex)
@@ -200,10 +202,10 @@ private:
 		else
 		{
 			databaseNavig--;
-			student[databaseNavig].incrYearOfStudy();
+			p_studentDatabase[databaseNavig].incrYearOfStudy();
 		}
 	}
-	void dataBaseNavigationPrint(Student student[], int databaseIndex) // function for database naviagation and printing student's info
+	void dataBaseNavigationPrint() // function for database naviagation and printing student's info
 	{
 		int databaseNavig = getUserInput();
 		if (databaseNavig > databaseIndex)
@@ -213,7 +215,7 @@ private:
 		else
 		{
 			databaseNavig--;
-			student[databaseNavig].printStudentInfo();
+			p_studentDatabase[databaseNavig].printStudentInfo();
 		}
 	}
 };
