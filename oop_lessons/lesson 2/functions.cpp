@@ -9,7 +9,7 @@ void Task1() // primal function for TASK 1
 {
 	std::cout << "------------------------Task 1------------------------" << std::endl;
 	int sizeOfDatabase = setSizeOfDatabase();
-	StudentDataBase* p_studentDatabase = new StudentDataBase[sizeOfDatabase];
+	Student* p_studentDatabase = new Student[sizeOfDatabase];
 	char c_userChoise{};
 	int databaseIndex{};
 	bool databaseClosing{};
@@ -150,7 +150,7 @@ std::string getUserWords() // function for geting user input on words for string
 	return userInput;
 }
 
-void dataBaseNavigationYear(StudentDataBase student[], int databaseIndex) // function for database naviagation and years increment
+void dataBaseNavigationYear(Student student[], int databaseIndex) // function for database naviagation and years increment
 {
 	int databaseNavig = getUserInput();
 	if (databaseNavig > databaseIndex)
@@ -164,7 +164,7 @@ void dataBaseNavigationYear(StudentDataBase student[], int databaseIndex) // fun
 	}
 }
 
-void dataBaseNavigationPrint(StudentDataBase student[], int databaseIndex) // function for database naviagation and printing student's info
+void dataBaseNavigationPrint(Student student[], int databaseIndex) // function for database naviagation and printing student's info
 {
 	int databaseNavig = getUserInput();
 	if (databaseNavig > databaseIndex)
