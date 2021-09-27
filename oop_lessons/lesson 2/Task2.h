@@ -39,7 +39,7 @@ protected:
 
 };
 
-class GrannySmith : public virtual Apple // heritage^2 class for TASK 2
+class GrannySmith : public Apple // heritage^2 class for TASK 2
 {
 public:
 	GrannySmith() : Apple("green") {}
