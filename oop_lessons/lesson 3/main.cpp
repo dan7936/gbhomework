@@ -161,6 +161,12 @@ public:
 	{
 		return Fraction(-m_numerator, m_denominator);
 	}
+	friend bool operator< (const Fraction& num1, const Fraction& num2);
+	friend bool operator> (const Fraction& num1, const Fraction& num2);
+	friend bool operator!= (const Fraction& num1, const Fraction& num2);
+	friend bool operator== (const Fraction& num1, const Fraction& num2);
+	friend bool operator<= (const Fraction& num1, const Fraction& num2);
+	friend bool operator>= (const Fraction& num1, const Fraction& num2);
 	int getResultNum()
 	{
 		return m_numerator;
@@ -171,7 +177,7 @@ public:
 	}
 	void printResult()
 	{
-		std::cout << getResultNum() << "/" << getResultDem() << std::endl;
+		std::cout << getResultNum() << "/" << getResultDem();
 	}
 private:
 	int m_numerator{};
@@ -198,6 +204,77 @@ Fraction operator/ (const Fraction& num1, const Fraction& num2)
 	return Fraction(num1.m_numerator * num2.m_denominator, num1.m_denominator * num2.m_numerator);
 }
 
+bool operator< (const Fraction& num1, const Fraction& num2)
+{
+	if (num1.m_numerator * num2.m_denominator < num2.m_numerator * num1.m_denominator)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool operator> (const Fraction& num1, const Fraction& num2)
+{
+	if (num1.m_numerator * num2.m_denominator > num2.m_numerator * num1.m_denominator)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool operator!= (const Fraction& num1, const Fraction& num2)
+{
+	if (num1.m_numerator * num2.m_denominator == num2.m_numerator * num1.m_denominator)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+bool operator== (const Fraction& num1, const Fraction& num2)
+{
+	if (num1.m_numerator * num2.m_denominator == num2.m_numerator * num1.m_denominator)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool operator<= (const Fraction& num1, const Fraction& num2)
+{
+	if (num1 == num2 || num1 < num2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool operator>= (const Fraction& num1, const Fraction& num2)
+{
+	if (num1 == num2 || num1 > num2)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 /*
 * ====================================================================
@@ -238,8 +315,8 @@ protected:
 */
 int main()
 {
-	Task1();
-	Task2();
+	//Task1();
+	//Task2();
 	Task3();
 	return 0;
 }
@@ -288,14 +365,66 @@ void Task3()
 	Fraction sum = number1 + number2;
 	std::cout << "Sum of two fraction numbers is "; 
 	sum.printResult();
+	std::cout << std::endl;
 	Fraction dif = number1 - number2;
 	std::cout << "Difference of two fraction numbers is ";
 	dif.printResult();
+	std::cout << std::endl;
 	Fraction mul = number1 * number2;
 	std::cout << "Multiply of two fraction numbers is ";
 	mul.printResult();
+	std::cout << std::endl;
 	Fraction quo = number1 / number2;
 	std::cout << "Quotient of two fraction numbers is ";
 	quo.printResult();
+	std::cout << std::endl;
 	std::cout << "Reverse sign of number is " << -number2.getResultNum() << "/" << number2.getResultDem() << std::endl;
+	if (number1 == number2)
+	{
+		std::cout << "equal" << std::endl;
+	}
+	else
+	{
+		std::cout << "not equal" << std::endl;
+	}
+	if (number1 != number2)
+	{
+		std::cout << "not equal" << std::endl;
+	}
+	else
+	{
+		std::cout << "equal" << std::endl;
+	}
+	if (number1 > number2)
+	{
+		std::cout << "more" << std::endl;
+	}
+	else
+	{
+		std::cout << "not more" << std::endl;
+	}
+	if (number1 < number2)
+	{
+		std::cout << "less" << std::endl;
+	}
+	else
+	{
+		std::cout << "not less" << std::endl;
+	}
+	if (number1 <= number2)
+	{
+		std::cout << "less or equal" << std::endl;
+	}
+	else
+	{
+		std::cout << "not" << std::endl;
+	}
+	if (number1 >= number2)
+	{
+		std::cout << "more or equal" << std::endl;
+	}
+	else
+	{
+		std::cout << "not" << std::endl;
+	}
 }
