@@ -244,14 +244,7 @@ class Card
 public:
 	void flip()
 	{
-		if (!m_face_up)
-		{
-			m_face_up = true;
-		}
-		else
-		{
-			m_face_up = false;
-		}
+		m_face_up = !m_face_up;
 	}
 	int getValue()
 	{
@@ -273,8 +266,8 @@ protected:
 */
 int main()
 {
-	//Task1();
-	//Task2();
+	Task1();
+	Task2();
 	Task3();
 	return 0;
 }
