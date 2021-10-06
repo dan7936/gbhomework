@@ -206,74 +206,32 @@ Fraction operator/ (const Fraction& num1, const Fraction& num2)
 
 bool operator< (const Fraction& num1, const Fraction& num2)
 {
-	if (num1.m_numerator * num2.m_denominator < num2.m_numerator * num1.m_denominator)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (num1.m_numerator * num2.m_denominator < num2.m_numerator * num1.m_denominator);
 }
 
 bool operator> (const Fraction& num1, const Fraction& num2)
 {
-	if (num1.m_numerator * num2.m_denominator > num2.m_numerator * num1.m_denominator)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-bool operator!= (const Fraction& num1, const Fraction& num2)
-{
-	if (num1.m_numerator * num2.m_denominator == num2.m_numerator * num1.m_denominator)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	return (num1.m_numerator * num2.m_denominator > num2.m_numerator * num1.m_denominator);
 }
 
 bool operator== (const Fraction& num1, const Fraction& num2)
 {
-	if (num1.m_numerator * num2.m_denominator == num2.m_numerator * num1.m_denominator)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (num1.m_numerator * num2.m_denominator == num2.m_numerator * num1.m_denominator);
+}
+
+bool operator!= (const Fraction& num1, const Fraction& num2)
+{
+	return !(num1 == num2);
 }
 
 bool operator<= (const Fraction& num1, const Fraction& num2)
 {
-	if (num1 == num2 || num1 < num2)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (num1 == num2 || num1 < num2);
 }
 
 bool operator>= (const Fraction& num1, const Fraction& num2)
 {
-	if (num1 == num2 || num1 > num2)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (num1 == num2 || num1 > num2);
 }
 
 /*
