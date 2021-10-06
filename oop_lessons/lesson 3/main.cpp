@@ -40,13 +40,13 @@ protected:
 class Circle : public Figure
 {
 public:
-	Circle(double pi, double r) : m_pi(pi), m_r(r) {}
+	Circle(double r) : m_r(r) {}
 	void area() override
 	{
 		std::cout << "Area of circle is: " << m_pi << "*(" << m_r << "*" << m_r << ")=" << m_pi * (m_r * m_r) << std::endl;
 	}
 private:
-	const double m_pi{};
+	const double m_pi{3.14};
 	double m_r{};
 };
 
@@ -169,6 +169,10 @@ public:
 	{
 		return m_denominator;
 	}
+	void printResult()
+	{
+		std::cout << getResultNum() << "/" << getResultDem() << std::endl;
+	}
 private:
 	int m_numerator{};
 	int m_denominator{};
@@ -205,13 +209,13 @@ class Card
 public:
 	void flip()
 	{
-		if (m_position == true)
+		if (!m_face_up)
 		{
-			m_position = false;
+			m_face_up = true;
 		}
 		else
 		{
-			m_position = true;
+			m_face_up = false;
 		}
 	}
 	int getValue()
@@ -219,7 +223,7 @@ public:
 		return m_value;
 	}
 protected:
-	bool m_position{};
+	bool m_face_up{};
 	enum CardParam
 	{
 		m_suit,
@@ -249,15 +253,20 @@ void Task1()
 {
 	std::cout << "---------------------------Task 1---------------------------" << std::endl;
 	Parallelogram paralelogram(10, 20);
-	paralelogram.area();
-	Circle circle(3.14, 10);
-	circle.area();
+	Circle circle(10);
 	Rectangle rectangle(20, 40);
-	rectangle.area();
 	Square square(20);
-	square.area();
 	Rhombus rhombus(14, 24);
-	rhombus.area();
+	Figure* figure = &paralelogram;
+	figure->area();
+	figure = &circle;
+	figure->area();
+	figure = &rectangle;
+	figure->area();
+	figure = &square;
+	figure->area();
+	figure = &rhombus;
+	figure->area();
 	std::cout << std::endl;
 }
 
@@ -277,12 +286,16 @@ void Task3()
 	Fraction number1(4, 6);
 	Fraction number2(8, 9);
 	Fraction sum = number1 + number2;
-	std::cout << "Sum of two fraction numbers is " << sum.getResultNum() << "/" << sum.getResultDem() << std::endl;
+	std::cout << "Sum of two fraction numbers is "; 
+	sum.printResult();
 	Fraction dif = number1 - number2;
-	std::cout << "Difference of two fraction numbers is " << dif.getResultNum() << "/" << dif.getResultDem() << std::endl;
+	std::cout << "Difference of two fraction numbers is ";
+	dif.printResult();
 	Fraction mul = number1 * number2;
-	std::cout << "Multiply of two fraction numbers is " << mul.getResultNum() << "/" << mul.getResultDem() << std::endl;
+	std::cout << "Multiply of two fraction numbers is ";
+	mul.printResult();
 	Fraction quo = number1 / number2;
-	std::cout << "Quotient of two fraction numbers is " << quo.getResultNum() << "/" << quo.getResultDem() << std::endl;
+	std::cout << "Quotient of two fraction numbers is ";
+	quo.printResult();
 	std::cout << "Reverse sign of number is " << -number2.getResultNum() << "/" << number2.getResultDem() << std::endl;
 }
